@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+body{
+    background-image: url('https://media.istockphoto.com/photos/yellow-background-picture-id1032083272?k=6&m=1032083272&s=612x612&w=0&h=UfQGfNpNfFtsH0-WKb-QT7wydzdXB7yTY5Hc9iWm_l4=');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Yusei Magic', sans-serif;
+  }
+  .log{
+      margin-top:5%;
+      
+  }
+  .main{
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 10px;
+    padding: 20px;
+    color: red;
+  }
+  #regForm {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 10px;
+    margin: 100px auto;
+    /* font-family: Raleway; */
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+  }
+  
+  h1 {
+    text-align: center;  
+  }
+  
+  /* input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  } */
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  button {
+    background-color: #0f1ef5;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    /* font-family: Raleway; */
+    cursor: pointer;
+    border-radius:30px;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  #prevBtn {
+    background-color: #f30e0e;
+    
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #69f809;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    position: relative;
+  }
+  p{
+    
+      margin-top: -6px;
+      margin-bottom: 1rem;
+     
+  
+  }
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #f30e66;
+  }
+  .head{
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 5px;
+  }
+  .ucard{
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 5px;
+  
+  }
+  .ufoot{
+    background: rgba(238, 205, 16, 0.192);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 5px;
+  
+  }
