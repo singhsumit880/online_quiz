@@ -1,85 +1,57 @@
 <?php
-
 session_start();
 if (!isset($_SESSION['username'])) {
     header('Location: index.php');
     }
 if(isset($_POST)){
     include 'connection.php';
-    $sub_id=$_POST['subject'];
+   
     // echo "<pre>";
     // print_r($_POST);
     // echo "</pre>";
-
     $arrkey=array_keys($_POST);
     $arrvalue=array_values($_POST);
+    // echo "<pre>";
+    // print_r($arrkey);
+    // print_r($arrvalue);
+    // echo "</pre>";
     $correct=0;
     $wrong=0;
     $notanswered=0;
-    for($i=1;$i<count($_POST);$i++){
-    $sql="SELECT * FROM `question` WHERE `id`=$arrkey[$i] AND `sub_id`='$sub_id'";
-    $query=mysqli_query($conn,$sql);
-    @$data=mysqli_fetch_assoc($query);
-    // echo $data['answer'];
-    // echo "<br>";
-    if($arrvalue[$i]==$data['answer']){
-        // echo "hjdgfkdf";
-        $correct++;
+    for($i=0;$i<count($_POST);$i++){
+        $sql="SELECT * FROM `question` WHERE `id`=$arrkey[$i]";
+        // echo "<pre>"; 
+        $query=mysqli_query($conn,$sql);
+        $data=mysqli_fetch_assoc($query);
+        // echo $data['answer'];
+        // echo "<br>";
+        if($arrvalue[$i]==$data['answer']){
+            // echo "hjdgfkdf";
+            $correct++;
+        }
+        elseif($arrvalue[$i]=='null'){
+            $notanswered++;
+        }
+        else{
+            $wrong++;
+       }
+        // echo "</pre>";
+       
+        
     }
-    elseif($arrvalue[$i]=='null'){
-        $notanswered++;
-    }
-    else{
-        $wrong++;
-   }
-    // echo "</pre>";
-   
     
-}
-
-//  echo $wrong;
-// echo "<br>";
-// echo $correct;
-// echo "<br>";
-// echo $notanswered;
-
-
-
-    // $sql="SELECT * FROM `question` WHERE `sub_id`='$sub_id'";
-    // $query=mysqli_query($conn,$sql);
-    // $count=0;
-    // $correct=0;
-    // $wrong=0;
-    // $notanswered=0;
-    // while($row= mysqli_fetch_array($query)){
-    //     $count++;
-
-    // // echo "<pre>";
-    // // print_r($row['answer']);
-    // // echo "</pre>";
-    //  if($row['answer']==$_POST['answer'.$count]){
-    //      $correct++;
-
-    //  }
-    //  elseif($_POST['answer'.$count]=='null'){
-    //      $notanswered++;
-    //  }
-    //  else{
-    //      $wrong++;
-    // }
-
-    // }
-    // echo $wrong;
+    //  echo $wrong;
     // echo "<br>";
     // echo $correct;
     // echo "<br>";
     // echo $notanswered;
     $total=$wrong+$notanswered+$correct;
+    
+   
 }
-
+   
 
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -102,36 +74,33 @@ if(isset($_POST)){
   <div class="container-fluid bg">
         <div class="container log">
         
-        <h1 class=""> Your  <?php include_once 'connection.php'; $sqli="SELECT * FROM `subject` WHERE `id`=$sub_id"; $queryy=mysqli_query($conn,$sqli);
-    $sub=mysqli_fetch_assoc($queryy); echo $sub['sub_name']; ?> Result is: </h1>
                  <div class="form-outline mb-4 centered main">
-                 
                     <h1 class="card-title">No. of Question : <?php echo $total; ?> </h1>
                     <h1 class="card-title">Correct : <?php echo $correct; ?> </h1>
                     <h1 class="card-title">Wrong : <?php echo $wrong; ?> </h1>
                     <h1 class="card-title">Not Answered : <?php echo $notanswered; ?> </h1>
                     
                 </div>
-               
-              
-                <?php $p=$correct*10; 
-                  if($p<40 && $p>=0){
-                    $status=" ( Fail )";
-                    $msg=" ( You Must Study Harder...)";
+                <?php $p=($correct/25)*100;
+                 if($p<40 && $p>=0){
+                     $status=" ( Fail )";
+                     $msg=" ( You Must Study Harder...)";
+                 }
+                 elseif ($p<75 && $p>40){
+                    $status=" ( Pass )";
+                    $msg=" ( Almost! Study a little more and take the test again ! )";
                 }
-                elseif ($p<70 && $p>40){
-                   $status=" ( Pass )";
-                   $msg=" ( Almost! Study a little more and take the test again ! )";
-               }
-               elseif ($p>80){
-                   $status=" ( Best Performer )";
-                   $msg=" ( You can be proud of yourself ! )";
-               }
+                elseif ($p>75){
+                    $status=" ( Best Performer )";
+                    $msg=" ( You can be proud of yourself ! )";
+                }
                 
                 ?>
+              
+                
                 <h1>Your Score is : <?php echo $p. '%' .$msg;?></h1>
                 <div class="progress ucard" style="height: 5rem; ">
-  <div class="progress-bar progress-bar-striped progress-bar-animated p" role="progressbar" style="width: <?php echo $p.'%';?> " aria-valuenow="" aria-valuemin="0" aria-valuemax="100"><h5><?php echo $status;  ?></h5></div>
+  <div class="progress-bar progress-bar-striped progress-bar-animated p" role="progressbar" style="width: <?php echo $p.'%';?> " aria-valuenow="" aria-valuemin="0" aria-valuemax="100"><h3><?php echo $status; ?></h3></div>
 </div>
                     
 <button class="btn btn-outline-primary mt-3" style="float:right" type="submit"onclick="location.href = 'userdashboard.php'">Start Again</button>
@@ -144,18 +113,17 @@ if(isset($_POST)){
   </body>
 </html>
 
+
+
 <?php 
 // if ( !isset($_SESSION) ) session_start();
 
-$currentsubname=$sub['sub_name'];
+// $currentsubname=$sub['sub_name'];
 $currentusername=$_SESSION['username'];
 $mail=$_SESSION['mail'];
 // echo $currentusername; 
 // echo "<br>";
 // echo $mail;
-// echo $currentusername; 
-// echo "<br>";
-// echo $currentsubname;
 // echo "<br>";
 // echo $total;
 // echo "<br>";

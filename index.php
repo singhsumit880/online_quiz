@@ -31,6 +31,7 @@ if(isset($_POST['submit'])){
                 elseif($row['isadmin']==0){
                     $_SESSION['username'] = $row['name'];
                     $_SESSION['uid'] = $row['uid'];
+                    $_SESSION['mail']= $row['email'];
                     // echo "user";
                     header("Location: userdashboard.php" );
                 }

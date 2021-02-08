@@ -24,7 +24,7 @@ $query=mysqli_query($conn,$sql);
   <div class="container-fluid bg">
         <div class="container log">
 
-            <form class="col-md  centered main"  method="post" action="">
+            <form class="col-md  centered main mb-5"  method="post" action="">
                 <h3 class="text-center">Add Question</h3>
                 <!-- Email input -->
                 <div class="form-outline mb-4">

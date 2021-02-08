@@ -34,19 +34,40 @@ $query=mysqli_query($conn,$sql);
                 <h1><?php echo $name; ?>, Welcome to Online Test Portal......</h1>
          
                     <div class="card-deck mt-5">
-                    <?php while($row = mysqli_fetch_array($query)){?>
+                    <?php  while($row = mysqli_fetch_array($query)){?>
                         <div class="">
-                            <div class="card text-dark text-center ucard mb-3" style="width: 200px; height:120px;">
+                            <div class="card text-dark text-center ucard mb-3" style="width: 200px; height:140px;">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo $row['sub_name']; ?></h5>
                                 
                                     <!-- <h5 class="card-title">0</h5> -->
-                                    <button class="btn btn-outline-primary" type="submit"
+                                    <button class="btn btn-outline-primary mt-3" type="submit"
                                         onclick="location.href = 'question.php?id=<?php echo $row['id']; ?>'">Stat Now</button>
                                 </div>
                             </div>
                         </div>
                     <?php }?>
+                    <div class="">
+                            <div class="card text-dark text-center ucard mb-3" style="width: 200px; height:140px;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Random Quiz(25 Question)</h5>
+                                   
+                                    <button class="btn btn-outline-primary " type="submit"
+                                        onclick="location.href = 'randomquiz.php'">Stat Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="card text-center ucard mb-3" style="width: 200px; height:140px; color:red;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Your Result</h5>
+                                   
+                                    <button class="btn btn-outline-primary mt-3" type="submit"
+                                        onclick="location.href = 'yourresult.php'">Check Now</button>
+                                </div>
+                            </div>
+                        </div>
                  </div>
             </main>
 

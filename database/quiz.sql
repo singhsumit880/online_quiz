@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2021 at 01:02 PM
+-- Generation Time: Feb 08, 2021 at 09:12 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `question` (
   `id` int(10) NOT NULL,
-  `question` varchar(100) NOT NULL,
-  `option1` varchar(40) NOT NULL,
-  `option2` varchar(40) NOT NULL,
-  `option3` varchar(40) NOT NULL,
-  `option4` varchar(40) NOT NULL,
-  `answer` varchar(40) NOT NULL,
+  `question` varchar(255) NOT NULL,
+  `option1` varchar(100) NOT NULL,
+  `option2` varchar(100) NOT NULL,
+  `option3` varchar(100) NOT NULL,
+  `option4` varchar(100) NOT NULL,
+  `answer` varchar(100) NOT NULL,
   `sub_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -72,7 +72,55 @@ INSERT INTO `question` (`id`, `question`, `option1`, `option2`, `option3`, `opti
 (29, 'Which of the following property specifies the bottom margin of an element?', ':margin', ':margin-bottom', ':margin-top', ':margin-left', 'option2', 3),
 (30, 'Which of the following value of cursor shows it as an arrow?', 'crosshair', 'default', 'pointer', 'move', 'option2', 3),
 (31, 'Which of the following css property specifies a delay for the transition effect?', 'transition-delay', 'transition-effect', 'transition', 'transition-duration', 'option1', 3),
-(32, 'Which CSS Property Is Used For Controlling The Layout?', 'Header', 'Footer', 'Display', 'None Of The Above', 'option3', 3);
+(32, 'Which CSS Property Is Used For Controlling The Layout?', 'Header', 'Footer', 'Display', 'None Of The Above', 'option3', 3),
+(35, 'Which of the following function of String object combines the text of two strings and returns a new string?', 'add()\r\n\r\n', 'merge()', 'concat()', 'append()\r\n\r\n', 'option3', 4),
+(37, 'Which of the following is not JavaScript Data Types?', 'Undefined', 'Number', 'Boolean', 'Float', 'option4', 4),
+(39, 'Which one of the following also known as Conditional Expression:', 'Alternative to if-else', 'Switch statement', 'If-then-else statement', 'immediate if', 'option4', 4),
+(40, 'In JavaScript, what is a block of statement?', 'Conditional block', 'block that combines a number of statements into a single compound statement', 'both conditional block and a single statement', 'block that contains a single statement', 'option2', 4),
+(41, 'When interpreter encounters an empty statements, what it will do:', 'Shows a warning', 'Prompts to complete the statement', 'Throws an error', 'Ignores the statements', 'option4', 4),
+(42, 'The \"function\" and \" var\" are known as:', 'Keywords', 'Data types', 'Declaration statements', 'Prototypes', 'option3', 4),
+(43, 'Which of the following variables takes precedence over the others if the names are the same?', 'Global variable', 'The local element', 'The two of the above', 'None of the above', 'option2', 4),
+(44, 'Which one of the following is the correct way for calling the JavaScript code?', 'Preprocessor', 'Triggering Event', 'RMI', 'Function/Method', 'option4', 4),
+(45, 'Which of the following type of a variable is volatile?', 'Mutable variable', 'Dynamic variable', 'Volatile variable', 'Immutable variable', 'option1', 4),
+(46, 'Which of the following option is used as hexadecimal literal beginning?', '00', '0x', '0X', 'Both 0x and 0X', 'option4', 4),
+(47, 'Which of the following is generally used for performing tasks like creating the structure of the relations, deleting relation?', 'DML(Data Manipulation Language)', 'Query', 'Relational Schema', 'DDL(Data Definition Language)', 'option4', 5),
+(48, 'Which of the following provides the ability to query information from the database and insert tuples into, delete tuples from, and modify tuples in the database?', 'DML(Data Manipulation Language)', 'DDL(Data Definition Language)', 'Query', 'Relational Schema', 'option1', 5),
+(49, 'What do you mean by one to many relationships?', 'One class may have many teachers', 'One teacher can have many classes', 'Many classes may have many teachers', 'Many teachers may have many classes', 'option2', 5),
+(50, 'A Database Management System is a type of _________software.', 'It is a type of system software', 'It is a kind of application software', 'It is a kind of general software', 'Both A and C', 'option1', 5),
+(51, 'The term \"FAT\" is stands for_____', 'File Allocation Tree', 'File Allocation Table', 'File Allocation Graph', 'All of the above', 'option2', 5),
+(52, 'Which of the following can be considered as the maximum size that is supported by FAT?', '8GB', '4GB', '4TB', 'None of the above', 'option2', 5),
+(53, 'The term \"NTFS\" refers to which one of the following?', 'New Technology File System', 'New Tree File System', 'New Table type File System', 'Both A and C', 'option1', 5),
+(54, 'Which of the following can be considered as the maximum size that is supported by NTFS?', '4GB', '16TB', '64TB', '8TB', 'option1', 5),
+(55, 'A huge collection of the information or data accumulated form several different sources is known as ________:', 'Data Management', 'Data Mining', 'Data Warehouse', 'Both B and C', 'option3', 5),
+(56, 'Which of the following can be used to extract or filter the data & information from the data warehouse?', 'Data redundancy', 'Data recovery tool', 'Data mining', 'Both B and C', 'option3', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `result`
+--
+
+CREATE TABLE `result` (
+  `id` int(11) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `test_name` varchar(30) NOT NULL,
+  `total_question` int(11) NOT NULL,
+  `correct` int(11) NOT NULL,
+  `wrong` int(11) NOT NULL,
+  `not_answered` int(11) NOT NULL,
+  `percentage` int(11) NOT NULL,
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `result`
+--
+
+INSERT INTO `result` (`id`, `email`, `name`, `test_name`, `total_question`, `correct`, `wrong`, `not_answered`, `percentage`, `time`) VALUES
+(1, 'singhsumit880@gmail.com', 'sumit', 'PHP', 10, 7, 2, 1, 70, '2021-02-08 05:33:07'),
+(2, 'raunak@gmail.com', 'Raunak', 'Random Test', 25, 17, 5, 3, 68, '2021-02-08 06:01:24'),
+(3, 'singhsumit880@gmail.com', 'sumit', 'PHP', 10, 9, 1, 0, 90, '2021-02-08 06:34:06');
 
 -- --------------------------------------------------------
 
@@ -92,7 +140,9 @@ CREATE TABLE `subject` (
 INSERT INTO `subject` (`id`, `sub_name`) VALUES
 (1, 'PHP'),
 (2, 'HTML'),
-(3, 'CSS');
+(3, 'CSS'),
+(4, 'JS'),
+(5, 'DBMS');
 
 -- --------------------------------------------------------
 
@@ -129,6 +179,12 @@ ALTER TABLE `question`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `result`
+--
+ALTER TABLE `result`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
@@ -148,13 +204,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `question`
 --
 ALTER TABLE `question`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT for table `result`
+--
+ALTER TABLE `result`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`

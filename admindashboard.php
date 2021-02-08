@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['email'])) {
-//     header('location: index.php');
-// }
+session_start();
+if (!isset($_SESSION['adminname'])) {
+    header('Location: index.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -27,24 +27,44 @@
                 <div class="card-deck mt-5">
             
                     <div class="">
-                        <div class="card text-dark ucard text-center mb-3" style="width: 200px; height:120px;">
+                        <div class="card text-dark ucard text-center mb-3" style="width: 200px; height:140px;">
                             <div class="card-body">
                                 <h5 class="card-title">Add Subject</h5>
-                                <button class="btn btn-outline-primary" type="submit"
+                                <button class="btn btn-outline-primary mt-3" type="submit"
                                     onclick="location.href = 'addsubject.php';">Add Now</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="">
-                        <div class="card text-dark ucard text-center mb-3" style="width: 200px; height:120px;">
+                        <div class="card text-dark ucard text-center mb-3" style="width: 200px; height:140px;">
                             <div class="card-body">
                                 <h5 class="card-title">Add Question</h5>
-                                <button class="btn btn-outline-primary" type="submit"
+                                <button class="btn btn-outline-primary mt-3" type="submit"
                                     onclick="location.href = 'addquestion.php';">Add Now</button>
                             </div>
                         </div>
                     </div>
+                    <div class="">
+                        <div class="card text-dark ucard text-center mb-3" style="width: 200px; height:140px;">
+                            <div class="card-body">
+                                <h5 class="card-title">View Question</h5>
+                                <button class="btn btn-outline-primary mt-3" type="submit"
+                                    onclick="location.href = 'viewquestion.php';">View Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                            <div class="card text-center ucard mb-3" style="width: 200px; height:140px; color:red;">
+                                <div class="card-body">
+                                    <h5 class="card-title">User Records</h5>
+                                   
+                                    <button class="btn btn-outline-primary mt-3" type="submit"
+                                        onclick="location.href = 'result.php'">Check Now</button>
+                                </div>
+                            </div>
+                        </div>
 
                    
 

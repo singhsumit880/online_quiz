@@ -3,28 +3,17 @@ session_start();
 if (!isset($_SESSION['username'])) {
     header('Location: index.php');
     }
-$sub_id=$_GET['id'];
 
 include 'connection.php';
-// $sql="SELECT * FROM `question` WHERE `sub_id`='$sub_id'";
-$sql="SELECT * FROM `question` WHERE `sub_id`='$sub_id' ORDER by rand() LIMIT 10";
+$sql="SELECT * FROM `question` ORDER by rand() LIMIT 25";
 $query=mysqli_query($conn,$sql);
 
 
 ?>
-<?php 
-include_once 'connection.php';
-$sub_id=$_GET['id'];
-$s="SELECT * FROM `subject` WHERE `id`='$sub_id'";
-$q=mysqli_query($conn,$s);
-
-
-?>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -32,23 +21,20 @@ $q=mysqli_query($conn,$s);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <title>Online Quiz</title>
 
-  </head>
- 
-  <body  oncontextmenu="return false">
+</head>
+<body  oncontextmenu="return false">
   <?php include 'userheader.php' ?>
   <div class="container-fluid bg">
         <div class="container log">
-          <?php while($r= mysqli_fetch_array($q)){?>
-            <h1 class="ucard">Your <?php echo $r['sub_name']; ?> Test is Running...   <span class="mb-5" style="color:red" id="time">00:00</span></h1>
-            
-           <?php } ?>
-            <form id="regForm" action="answer.php" method="post">
-                <?php $count=0; while($row= mysqli_fetch_array($query)){
+        <h1 class="ucard">Your Random Test is Running...   <span class="mb-5" style="color:red" id="time">00:00</span></h1>
+<form id="regForm" action="randomquizanswer.php" method="post">
+  
+ <?php $count=0; while($row= mysqli_fetch_array($query)){
                  
-                  $count++; ?>
-                <div class="tab">
+                 $count++; ?>
+  <div class="tab">
                     <h3 style="color:blue"><?php echo $row['question'];?></h3>
-                    <input type="text" name="subject" value="<?php echo $sub_id; ?>" hidden>
+                   
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="<?php echo $row['id']; ?>" id="flexRadioDefault1" value="option1">
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -73,18 +59,20 @@ $q=mysqli_query($conn,$s);
                         <h4><?php echo $row['option4'];?></h4>
                         </label>
                     </div>
-                </div>
-                <input class="form-check-input" type="radio" name="<?php echo $row['id']; ?>" id="flexRadioDefault1" value="null" hidden checked>
-                    <?php }?>
-                <div style="overflow:auto;">
-                    <div style="float:right;" >
-                    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-                    
-                    </div>
-                </div>
-                <!-- Circles which indicates the steps of the form: -->
-                <div style="text-align:center;margin-top:40px;">
+                    <input class="form-check-input" type="radio" name="<?php echo $row['id']; ?>" id="flexRadioDefault1" value="null" hidden checked>
+
+  </div>
+  <?php }?>
+  
+  
+  <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
                 <?php for($i=1;$i<=$count;$i++){
 
 
@@ -93,13 +81,12 @@ $q=mysqli_query($conn,$s);
                 </div>
                 <button type="Submit" id="sub-btn" name="Submit" hidden>Submit</button>
                 </form>
-                
-        </div>
+                </div>
     </div>
     <?php include 'footer.php' ?>           
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script>
+<script>
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -175,7 +162,6 @@ function fixStepIndicator(n) {
 
 
 
-
 function startTimer(duration, display) {
    var timer = duration, minutes, seconds;
    setInterval(function () {
@@ -198,7 +184,7 @@ function startTimer(duration, display) {
 }
 
 function countdown() {
-   var counter = 180;
+   var counter = 600;
        display = document.querySelector('#time');
    startTimer(counter, display);
 }
@@ -247,5 +233,6 @@ $(document).ready(function() {
     };
 });
 </script>
-  </body>
+
+</body>
 </html>
